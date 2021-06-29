@@ -1,34 +1,37 @@
 alert("Welcome to my website");
 
 const visitorName = prompt("Please type in your name");
-console.log(visitorName);
 
-let birthYear = prompt("Please type in the year you were born");
-console.log(birthYear);
+const rollingYear = 2021;
 
-if (birthYear.length === 0 || birthYear === null) {
-  birthYear = 2021;
+let birthYear = Number(prompt("Please type in the year you were born"));
+
+// When the value is 0 or they clicked cancel or typed in text:
+if (birthYear === 0 || birthYear === null) {
+  birthYear = rollingYear;
 }
 
-const age = 2021 - Number(birthYear);
-console.log(age);
+const visitorAge = rollingYear - birthYear;
 
-if (age < 10) {
+if (visitorAge < 10) {
   alert(
-    "You are too young for this '" +
-      visitorName +
-      "', Come back when you are older."
+    `You are too young for this ${visitorName}, Come back when you are older.`
   );
-} else if (age > 10 && age < 18) {
-  if (confirm("Confirm that you are with an adult: Type 'OK'")) {
+} else if (visitorAge >= 10 && visitorAge < 18) {
+  const userWithCompany = confirm(
+    "Confirm that you are with an adult: Type 'OK'"
+  );
+  if (userWithCompany) {
     alert(
-      "Welcome to my super website '" +
-        visitorName +
-        "'. Good, that you are not alone here!"
+      `Welcome to my super website ${visitorName}. Good, that you are not alone here!`
     );
-  } else if (age === 40) {
-    alert("Same year");
   } else {
-    alert("Welcome to my super website '" + visitorName + "'!");
+    alert(`You are too young ${visitorName}. You need an adult to continue`);
   }
+} else if (visitorAge === 40) {
+  alert("Same year");
+} else {
+  alert(`Welcome to my super website ${visitorName}!`);
 }
+
+console.log(visitorAge);
